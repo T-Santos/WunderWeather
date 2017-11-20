@@ -13,10 +13,10 @@ __docformat__ = 'reStructuredText'
 import requests
 
 # local Ms
-import wunder.today
-import wunder.date
-import wunder.forecast
-import wunder.weather_base
+import WunderWeather.today
+import WunderWeather.date
+import WunderWeather.forecast
+import WunderWeather.weather_base
 
 
 class Extract():

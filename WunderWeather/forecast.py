@@ -13,7 +13,7 @@ from collections import defaultdict
 
 # local Ms
 #from weather_base import WeatherBase
-from wunder.weather_base import WeatherBase
+from WunderWeather.weather_base import WeatherBase
 
 
 class Forecast(WeatherBase):

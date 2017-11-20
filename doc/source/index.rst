@@ -100,7 +100,7 @@ The following code snippets are examples of extracting data from data feature re
 .. code-block:: python
 	:linenos:
 
-	from wunder import weather
+	from WunderWeather import weather
 	extractor = weather.Extract(api_key)
 	[location,current] = extractor.features("MA/Boston",(('geolookup',''),('now','')))
 	print("Current Temperature in %s is: %s" %(location.data.city,current.temp_f))

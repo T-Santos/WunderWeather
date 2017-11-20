@@ -10,7 +10,7 @@ __docformat__ = 'reStructuredText'
 
 # local Ms
 #from weather_base import WeatherBase
-from wunder.weather_base import WeatherBase
+from WunderWeather.weather_base import WeatherBase
 
 
 class Date(WeatherBase):
