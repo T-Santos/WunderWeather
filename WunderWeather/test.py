@@ -40,16 +40,16 @@ def run_test():
     # [print(obs.date_pretty,obs.temp_f,obs.heat_index_f) for obs in d.observations]
 
     # make a composite features request
-    # query = ['MA','Boston']
-    # feature_context = (
-    #                     ('now',''),
-    #                     ('today_historical',''),
-    #                     ('date',"20161111"),
-    #                     )
-    # [now,history,date] = w.features(query,feature_context)
-    # print(now)
-    # print(history)
-    # print(date)
+    query = ['MA','Boston']
+    feature_context = (
+                        ('now',''),
+                        ('today_historical',''),
+                        ('date',"20161111"),
+                        )
+    [now,history,date] = w.features(query,feature_context)
+    print(now)
+    print(history)
+    print(date)
 
     # this will use cached version for testing
     #feature_key = weather.Extract.FEATURE_RESPONSE_MAP['daycast']
@@ -450,8 +450,8 @@ def run_snippet():
     pass
 
 def main():
-    #run_test()
-    run_snippet()
+    run_test()
+    #run_snippet()
 
 
 if __name__ == '__main__':
@@ -465,5 +465,5 @@ if __name__ == '__main__':
     import weather
     from weather import *
     
-    unittest.main()
-    #main()
+    #unittest.main()
+    main()

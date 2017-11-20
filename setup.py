@@ -2,21 +2,19 @@ from distutils.core import setup
 
 # To use a consistent encoding
 from codecs import open
-from os import path
-
-here = path.abspath(path.dirname(__file__))
+from os import path, pardir
 
 # Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+# with open('README.rst', encoding='utf-8') as f:
+#     long_description = f.read()
 
 setup(
   name = 'WunderWeather',
-  packages = ['wunder'],
+  packages = ['WunderWeather'],
   install_requires = ['easydict','requests'],
-  version = '0.2',
+  version = '0.2.6',
   description = 'Wrapper for Weather Underground API',
-  long_description = long_description,
+  #long_description = long_description,
   author = 'Tyler Santos',
   author_email = '1tsantos7+wunderweather@gmail.com',
   url = 'https://github.com/T-Santos/WunderWeather',

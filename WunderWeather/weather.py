@@ -13,10 +13,8 @@ __docformat__ = 'reStructuredText'
 import requests
 
 # local Ms
-import WunderWeather.today
-import WunderWeather.date
-import WunderWeather.forecast
-import WunderWeather.weather_base
+import WunderWeather
+from WunderWeather import today, date, forecast, weather_base
 
 
 class Extract():
@@ -114,14 +112,11 @@ class Extract():
             Class definition for feature
 
         """
+        pkg = 'WunderWeather'
         klass = cls.FEATURE_CLASS_MAP[feature_key]
-        parts = klass.split('.')
-        module = ".".join(parts[:-1])
-        m = __import__(module)
-        for comp in parts[1:]:
-            m = getattr(m, comp)
-
-        return m
+        [mod,kls] = klass.split('.')
+        mod = __import__(pkg+'.'+mod, fromlist=[kls])
+        return getattr(mod, kls)
 
     def __init__(self, api_key, settings=None):
         """constructor to set up extract defaults for wunderground connection
