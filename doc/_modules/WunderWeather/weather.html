@@ -1,0 +1,450 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WunderWeather.weather &#8212; WunderWeather 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for WunderWeather.weather</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: weather</span>
+<span class="sd">   :platform: Unix, Windows</span>
+<span class="sd">   :synopsis: The classes and modules provided have several functions to aid in abstracting the nuances with the</span>
+<span class="sd">                wunderground responses. The purpose is to expose the results in a uniform format while providing</span>
+<span class="sd">                shortcuts, normalizing access, and making more pythonic references to wunderground&#39;s data.</span>
+<span class="sd">.. moduleauthor:: Tyler Santos &lt;1tsantos at gmail.com&gt;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;reStructuredText&#39;</span>
+
+<span class="c1"># 3rd party P&amp;Ms</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># local Ms</span>
+<span class="kn">import</span> <span class="nn">WunderWeather</span>
+<span class="kn">from</span> <span class="nn">WunderWeather</span> <span class="k">import</span> <span class="n">today</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="n">weather_base</span>
+
+
+<div class="viewcode-block" id="Extract"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract">[docs]</a><span class="k">class</span> <span class="nc">Extract</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Encapsulate logic for extracting weather data</span>
+
+<span class="sd">    This is the main point of entry to extract data from the weather underground service</span>
+<span class="sd">    utilizing their public API.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes:</span>
+<span class="sd">        `Wunderground Doc &lt;https://www.wunderground.com/weather/api/d/docs&gt;`_</span>
+<span class="sd">        </span>
+<span class="sd">        URL Request Format:</span>
+<span class="sd">            `http://api.wunderground.com/api/&lt;API_KEY&gt;/features/settings/q/query.format`</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        BASE_URL (str): Base string used for URL generation</span>
+<span class="sd">        FEATURE_URL (str): string template to generate URL for a feature request</span>
+<span class="sd">        HURRICANE_URL (str): string template to generate URL for a hurricane feature request</span>
+<span class="sd">        FEATURE_URL_MAP (dict): Mapping of module&#39;s feature key to wunderground&#39;s key in the URL</span>
+<span class="sd">        FEATURE_RESPONSE_MAP (dict): Mapping of module&#39;s feature key to wunderground&#39;s key in the response</span>
+<span class="sd">        FEATURE_CLASS_MAP (dict): Mapping of module&#39;s feature key to the object definition to generate an instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://api.wunderground.com/api&#39;</span>
+    <span class="n">FEATURE_URL</span> <span class="o">=</span> <span class="n">BASE_URL</span> <span class="o">+</span> <span class="s1">&#39;/</span><span class="si">{key}</span><span class="s1">/</span><span class="si">{features}</span><span class="s1">/</span><span class="si">{settings}</span><span class="s1">/q/</span><span class="si">{query}</span><span class="s1">.</span><span class="si">{format}</span><span class="s1">&#39;</span>
+    <span class="n">HURRICANE_URL</span> <span class="o">=</span> <span class="n">BASE_URL</span> <span class="o">+</span> <span class="s1">&#39;/</span><span class="si">{key}</span><span class="s1">/</span><span class="si">{feature}</span><span class="s1">/</span><span class="si">{settings}</span><span class="s1">/view.</span><span class="si">{format}</span><span class="s1">&#39;</span>
+
+    <span class="n">FEATURE_URL_MAP</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s1">&#39;alerts&#39;</span><span class="p">:</span> <span class="s1">&#39;alerts&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;astronomy&#39;</span><span class="p">:</span> <span class="s1">&#39;astronomy&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;cams&#39;</span><span class="p">:</span> <span class="s1">&#39;webcams&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;history_&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;date_range&#39;</span><span class="p">:</span> <span class="s1">&#39;planner_&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;geolookup&#39;</span><span class="p">:</span> <span class="s1">&#39;geolookup&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;hourly_daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;hourly_weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly10day&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;hurricane&#39;</span><span class="p">:</span> <span class="s1">&#39;currenthurricane&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;now&#39;</span><span class="p">:</span> <span class="s1">&#39;conditions&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rawtide&#39;</span><span class="p">:</span> <span class="s1">&#39;rawtide&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;satelite&#39;</span><span class="p">:</span> <span class="s1">&#39;satelite&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;tide&#39;</span><span class="p">:</span> <span class="s1">&#39;tide&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;today_historical&#39;</span><span class="p">:</span> <span class="s1">&#39;almanac&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast10day&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;yesterday&#39;</span><span class="p">:</span> <span class="s1">&#39;yesterday&#39;</span><span class="p">,</span>
+                        <span class="p">}</span>
+
+    <span class="n">FEATURE_RESPONSE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s1">&#39;alerts&#39;</span><span class="p">:</span> <span class="s1">&#39;alerts&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;astronomy&#39;</span><span class="p">:</span> <span class="s1">&#39;moon_phase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;cams&#39;</span><span class="p">:</span> <span class="s1">&#39;webcams&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;history&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;date_range&#39;</span><span class="p">:</span> <span class="s1">&#39;trip&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;geolookup&#39;</span><span class="p">:</span> <span class="s1">&#39;location&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hourly_daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly_forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hourly_weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly_forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hurricane&#39;</span><span class="p">:</span> <span class="s1">&#39;currenthurricane&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;now&#39;</span><span class="p">:</span> <span class="s1">&#39;current_observation&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;rawtide&#39;</span><span class="p">:</span> <span class="s1">&#39;rawtide&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;satelite&#39;</span><span class="p">:</span> <span class="s1">&#39;satelite&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;tide&#39;</span><span class="p">:</span> <span class="s1">&#39;tide&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;today_historical&#39;</span><span class="p">:</span> <span class="s1">&#39;almanac&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;yesterday&#39;</span><span class="p">:</span> <span class="s1">&#39;history&#39;</span><span class="p">,</span>
+                            <span class="p">}</span>
+
+    <span class="n">FEATURE_CLASS_MAP</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s1">&#39;alerts&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;astronomy&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;cams&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;date.Date&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;date_range&#39;</span><span class="p">:</span> <span class="s1">&#39;date.Range&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast.Forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;geolookup&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hourly_daycast&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hourly_weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;hurricane&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;now&#39;</span><span class="p">:</span> <span class="s1">&#39;today.Now&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;rawtide&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;satelite&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;tide&#39;</span><span class="p">:</span> <span class="s1">&#39;weather_base.WeatherBase&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;today_historical&#39;</span><span class="p">:</span> <span class="s1">&#39;today.Historical&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;weekcast&#39;</span><span class="p">:</span> <span class="s1">&#39;forecast.Forecast&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;yesterday&#39;</span><span class="p">:</span> <span class="s1">&#39;date.Date&#39;</span><span class="p">,</span>
+                            <span class="p">}</span>
+
+<div class="viewcode-block" id="Extract.get_feature_class"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.get_feature_class">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_feature_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the class definition for a particular feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            feature_key (str): internal key for feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Class definition for feature</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pkg</span> <span class="o">=</span> <span class="s1">&#39;WunderWeather&#39;</span>
+        <span class="n">klass</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">FEATURE_CLASS_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="p">[</span><span class="n">mod</span><span class="p">,</span><span class="n">kls</span><span class="p">]</span> <span class="o">=</span> <span class="n">klass</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">pkg</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">mod</span><span class="p">,</span> <span class="n">fromlist</span><span class="o">=</span><span class="p">[</span><span class="n">kls</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">kls</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;constructor to set up extract defaults for wunderground connection</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            api_key (str): Wunderground supplied API Key.</span>
+<span class="sd">            settings (dict, optional): Settings for URL as defined.</span>
+<span class="sd">                https://www.wunderground.com/weather/api/d/docs?d=data/index</span>
+<span class="sd">                Defaults to lang:EN</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            api_key (str): Wunderground supplied API Key.</span>
+<span class="sd">            format (str): Response format. currently only JSON is supported</span>
+<span class="sd">            settings (dict): Settings for URL as defined.</span>
+<span class="sd">                https://www.wunderground.com/weather/api/d/docs?d=data/index</span>
+<span class="sd">                Defaults to {lang:EN}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">settings</span> <span class="k">if</span> <span class="n">settings</span> <span class="k">else</span> <span class="p">{</span><span class="s1">&#39;lang&#39;</span><span class="p">:</span> <span class="s1">&#39;EN&#39;</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
+
+<div class="viewcode-block" id="Extract.hurricane"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.hurricane">[docs]</a>    <span class="k">def</span> <span class="nf">hurricane</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Interface with the current hurricane data feature</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_key (str): Module feature key</span>
+<span class="sd">            context (dict): Used to populate feature URL template</span>
+<span class="sd">            response (dict): JSON representation of the response</span>
+<span class="sd">            response_feature_key (str): Module feature key&#39;s key for response parsing</span>
+<span class="sd">            ctor (`weather.WeatherBase`): Reference to class to potentially generate an instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather.weather_base instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;hurricane&#39;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>
+                    <span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">FEATURE_URL_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">],</span>
+                    <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span>
+                    <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">:</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">skey</span><span class="p">,</span> <span class="n">svalue</span><span class="p">)</span> <span class="k">for</span> <span class="n">skey</span><span class="p">,</span> <span class="n">svalue</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">items</span><span class="p">()]),</span>
+                    <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_feature_request</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">HURRICANE_URL</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+        <span class="n">response_feature_key</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">response_feature_key</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">ctor</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ctor</span><span class="p">({</span><span class="n">response_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Extract.today_now"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.today_now">[docs]</a>    <span class="k">def</span> <span class="nf">today_now</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the conditions data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.today_historical"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.today_historical">[docs]</a>    <span class="k">def</span> <span class="nf">today_historical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the almanac data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;today_historical&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.daycast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.daycast">[docs]</a>    <span class="k">def</span> <span class="nf">daycast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the forcast data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;daycast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.weekcast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.weekcast">[docs]</a>    <span class="k">def</span> <span class="nf">weekcast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the forcast10day data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;weekcast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.date"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.date">[docs]</a>    <span class="k">def</span> <span class="nf">date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the history data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+<span class="sd">            date (str): Date in the form YYYYMMDD.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">for_features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.date_range"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.date_range">[docs]</a>    <span class="k">def</span> <span class="nf">date_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">date_range</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the planner data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+<span class="sd">            date_range (str): Date range (30 day max) in the form MMDDMMDD.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">            and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            today.Now instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;date_range&#39;</span><span class="p">,</span> <span class="n">date_range</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.features"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.features">[docs]</a>    <span class="k">def</span> <span class="nf">features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Central logic for making data feature requests</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to supply feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            query (list): Strings for URL generation</span>
+<span class="sd">            feature_codes (str):  Final format for URL feature keys (with data appended)</span>
+<span class="sd">            context (dict): final formatted data for URL template</span>
+<span class="sd">            response (dict): JSON response</span>
+<span class="sd">            ctor (obj): Object Class Reference to generate an instance.</span>
+<span class="sd">                Could be one of</span>
+
+<span class="sd">                * :mod:`weather_base.WeatherBase`</span>
+<span class="sd">                * :mod:`today.Now`</span>
+<span class="sd">                * :mod:`today.Historical`</span>
+<span class="sd">                * :mod:`forcast.Daycast`</span>
+<span class="sd">                * :mod:`forcast.Weekcast`</span>
+<span class="sd">                * :mod:`date.Date`</span>
+<span class="sd">                * :mod:`date.Range`</span>
+
+<span class="sd">            weather_features (list): Instances to be retuned. Offset could be None</span>
+<span class="sd">                if there was no response for the supplied data feature.</span>
+<span class="sd">            feature_key (str): Module&#39;s feature key</span>
+<span class="sd">            response_feature_key (str): Module&#39;s feature key for URL response</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of weather_features. Offsets returned in the order they are supplied</span>
+<span class="sd">            in the feature_context arg. Offset could be none if no response</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">query</span><span class="p">]</span>
+
+        <span class="n">feature_codes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">FEATURE_URL_MAP</span><span class="p">[</span><span class="n">f_key</span><span class="p">]</span> <span class="o">+</span> <span class="n">f_val</span> <span class="k">for</span> <span class="n">f_key</span><span class="p">,</span><span class="n">f_val</span> <span class="ow">in</span> <span class="n">feature_context</span><span class="p">]</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>
+                    <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">feature_codes</span><span class="p">),</span>
+                    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                    <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span>
+                    <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">:</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_key</span><span class="p">,</span><span class="n">s_val</span><span class="p">)</span> <span class="k">for</span> <span class="n">s_key</span><span class="p">,</span><span class="n">s_val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">items</span><span class="p">()]),</span>
+                    <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_feature_request</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">FEATURE_URL</span><span class="p">,</span><span class="n">context</span><span class="p">)</span>
+
+        <span class="n">weather_features</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">feature_context</span><span class="p">:</span>
+            
+            <span class="n">ctor</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+            <span class="n">response_feature_key</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">response_feature_key</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+
+                <span class="c1"># if we get a list back as the high level item</span>
+                <span class="c1"># keep the feature key in there as a single key dict</span>
+                <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                    <span class="n">weather_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">ctor</span><span class="p">({</span><span class="n">response_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]}))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">weather_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">weather_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">weather_features</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_make_feature_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url_template</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Private member to make a request </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url_template (str): Template used for URL generation</span>
+<span class="sd">            data (dict): Data used to populate URL template</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            JSONified response in dictionary format</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">))</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">WunderWeather</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Tyler Santos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

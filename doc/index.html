@@ -1,0 +1,287 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to WunderWeather! &#8212; WunderWeather 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="WunderWeather" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-wunderweather">
+<h1>Welcome to WunderWeather!<a class="headerlink" href="#welcome-to-wunderweather" title="Permalink to this headline">¶</a></h1>
+<p>Whether you’re already a user and want a refresher on the documentation or you’re evaluating the package for the first time, you’ve come to the right place. So what do you want to learn more about?</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a><ul>
+<li><a class="reference internal" href="#about-the-wunderground-api" id="id3">About the Wunderground API</a></li>
+<li><a class="reference internal" href="#about-the-wunderweather-api" id="id4">About the WunderWeather API</a></li>
+<li><a class="reference internal" href="#code-examples" id="id5">Code Examples</a></li>
+<li><a class="reference internal" href="#explore-the-wunderweather-api" id="id6">Explore the WunderWeather API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#looking-to-contribute" id="id7">Looking to Contribute</a><ul>
+<li><a class="reference internal" href="#todos" id="id8">TODOs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mentions" id="id9">Mentions</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>WunderWeather attempts to expose data supplied by <a class="reference external" href="https://www.wunderground.com/?apiref=0627061efb72054c">Weather Underground</a> in a way that is easy to use and easy to get weather data into your application quickly without having to deal with all of the details.</p>
+<img alt="_images/wundergroundLogo_4c_horz.jpg" src="_images/wundergroundLogo_4c_horz.jpg" />
+<div class="section" id="about-the-wunderground-api">
+<h3><a class="toc-backref" href="#id3">About the Wunderground API</a><a class="headerlink" href="#about-the-wunderground-api" title="Permalink to this headline">¶</a></h3>
+<p>The Wunderground API supplies different endpoints called <a class="reference external" href="https://www.wunderground.com/weather/api/d/docs?d=data/index?apiref=0627061efb72054c">data features</a> which, when supplied the proper arguments, return numerous data points describing the feature being queried.</p>
+<p><a class="reference external" href="https://www.wunderground.com/weather/api/d/docs?apiref=0627061efb72054c">Documentation</a></p>
+</div>
+<div class="section" id="about-the-wunderweather-api">
+<h3><a class="toc-backref" href="#id4">About the WunderWeather API</a><a class="headerlink" href="#about-the-wunderweather-api" title="Permalink to this headline">¶</a></h3>
+<p>WunderWeather was built to expose the data supplied by Wunderground in a uniform fashion. For certain data features where it applied, wrapper classes were created to normalize the data returned and supply ease of access to that data.</p>
+<dl class="docutils">
+<dt>When developing WunderWeather there were a few key concepts kept in mind which are listed below. If you intend on contributing, please keep these ideas in mind.</dt>
+<dd><ol class="first last arabic">
+<li><dl class="first docutils">
+<dt>Out of the hundreds of data points that Wunderground so graciously supplies, expose shortcuts to the more frequently used/popular data points such as temperature and date through the data feature specific wrappers.</dt>
+<dd><ol class="first arabic simple">
+<li>For the history data feature, Wunderground exposes the average temperature data point using 3 keys rather than the one abstracted in WunderWeather</li>
+</ol>
+<p><strong>Wunderground:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;daily_summary&quot;</span><span class="p">][</span><span class="s2">&quot;meantempi&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>WunderWeather:</strong></p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">temp_f</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Normalize the data point names being exposed.</dt>
+<dd><ol class="first arabic simple">
+<li>The Wunderground API does a great job at supplying endless amounts of weather data but unfortunately similar data points across different features have different names. A case where this crops up frequently is for imperial (i) and metric (m) and their respective Fahrenheit (f) and Celsius (c) identifiers for temperature.</li>
+</ol>
+<p><strong>Example Data Points:</strong></p>
+<ul class="last simple">
+<li>temp_i vs temp_f</li>
+<li>temp_m vs temp_c</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="code-examples">
+<h3><a class="toc-backref" href="#id5">Code Examples</a><a class="headerlink" href="#code-examples" title="Permalink to this headline">¶</a></h3>
+<p>The following code snippets are examples of extracting data from data feature responses. Some examples build off of previous examples (as to avoid repetition) but should be properly documented as <code class="docutils literal"><span class="pre">continuation</span> <span class="pre">from</span> <span class="pre">NNN</span> <span class="pre">example</span></code>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The WunderWeather only Python 3 compatible.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Because the <a class="reference external" href="http://docs.python-requests.org/en/master/">requests package</a> is awesome, we’re going to be using that to make our requests in the following examples. We use it to make requests in our package and so should you!</p>
+</div>
+<p><strong>Not using Requests</strong></p>
+<p><em>Example listed in Wunderground documentation</em></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://api.wunderground.com/api/&lt;YOUR_API_KEY&gt;/geolookup/conditions/q/IA/Cedar_Rapids.json&#39;</span><span class="p">)</span>
+<span class="n">json_string</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">parsed_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">parsed_json</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
+<span class="n">temp_f</span> <span class="o">=</span> <span class="n">parsed_json</span><span class="p">[</span><span class="s1">&#39;current_observation&#39;</span><span class="p">][</span><span class="s1">&#39;temp_f&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="s2">&quot;Current temperature in </span><span class="si">%s</span><span class="s2"> is: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">temp_f</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p><a class="reference external" href="https://www.wunderground.com/weather/api/d/docs?d=resources/code-samples#python&amp;apiref=0627061efb72054c">example</a></p>
+<p><strong>Using Requests</strong></p>
+<p><em>Example listed in Wunderground doc converted to use requests</em></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># learn more: https://python.org/pypi/requests</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://api.wunderground.com/api/&lt;YOUR_API_KEY&gt;/geolookup/conditions/q/MA/Boston.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
+<span class="n">temp_f</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;current_observation&#39;</span><span class="p">][</span><span class="s1">&#39;temp_f&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Current Temperature in </span><span class="si">%s</span><span class="s2"> is: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">location</span><span class="p">,</span><span class="n">temp_f</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>Using WunderWeather</strong></p>
+<p><em>Example listed in Wunderground doc converted to use WunderWeather</em></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">WunderWeather</span> <span class="kn">import</span> <span class="n">weather</span>
+<span class="n">extractor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+<span class="p">[</span><span class="n">location</span><span class="p">,</span><span class="n">current</span><span class="p">]</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="s2">&quot;MA/Boston&quot;</span><span class="p">,((</span><span class="s1">&#39;geolookup&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Current Temperature in </span><span class="si">%s</span><span class="s2"> is: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">city</span><span class="p">,</span><span class="n">current</span><span class="o">.</span><span class="n">temp_f</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<p><em>In the example above, notice how data points can be extracted from a feature using dotted notation whether there is a feature specific wrapper class or not to provide a uniform look in the calling application. When referencing shortcuts from wrapper classes or directly accessing the data, the look is the same. As of writing this documentation Geolookup does not have a wrapper so all data extracted from that feature must use the</em> <code class="docutils literal"><span class="pre">WeatherBase.data</span></code> <em>member to use the dotted notation.</em></p>
+</div>
+<div class="section" id="explore-the-wunderweather-api">
+<h3><a class="toc-backref" href="#id6">Explore the WunderWeather API</a><a class="headerlink" href="#explore-the-wunderweather-api" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">WunderWeather</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="WunderWeather.html">WunderWeather package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="looking-to-contribute">
+<h2><a class="toc-backref" href="#id7">Looking to Contribute</a><a class="headerlink" href="#looking-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>Thanks for checking out this section and showing interest in making this package better. The following are points of interest that could use polishing or expanding. As always, if you see data points across data features that could use a level of abstraction just add a wrapper class if not already defined and add a property member to that class to provide a shortcut or normalized external name across features.</p>
+<div class="section" id="todos">
+<h3><a class="toc-backref" href="#id8">TODOs</a><a class="headerlink" href="#todos" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><dl class="first docutils">
+<dt>Several Data Features only exist using the generic WeatherBase, base class and thus their data is accessed using the data member. There are likely reasons to create wrappers for these features. current hurricane seemed to need a wrapper the most. But some others that might benefit from abstraction are listed below.</dt>
+<dd><ol class="first last arabic">
+<li>currenthurricane</li>
+<li>rawtide and tide</li>
+<li>hourly* based features</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li>Of course, help with documentation, documentation, and more documentation.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="mentions">
+<h2><a class="toc-backref" href="#id9">Mentions</a><a class="headerlink" href="#mentions" title="Permalink to this headline">¶</a></h2>
+<p>I just want give mention and thanks to the following:</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference external" href="https://www.wunderground.com/?apiref=0627061efb72054c">Weather Underground</a> for supplying the data.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://docs.python-requests.org/en/master/">requests</a> for making http for me.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/requests/requests">requests github</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><a class="reference external" href="https://pypi.python.org/pypi/easydict/">EasyDict</a> for supplying the dotted dictionary notation functionality.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/makinacorpus/easydict">EasyDict github</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Contributors:</strong></p>
+<p><a class="reference external" href="https://github.com/T-Santos">Tyler Santos</a></p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="modules.html" title="next chapter">WunderWeather</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">WunderWeather</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Tyler Santos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

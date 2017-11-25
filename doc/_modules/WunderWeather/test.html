@@ -1,0 +1,561 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WunderWeather.test &#8212; WunderWeather 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for WunderWeather.test</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: test</span>
+<span class="sd">   :platform: Unix, Windows</span>
+<span class="sd">   :synopsis: Module to run tests for features</span>
+
+<span class="sd">.. moduleauthor:: Tyler Santos &lt;1tsantos at gmail.com&gt;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;reStructuredText&#39;</span>
+
+<span class="c1"># builtin P&amp;Ms</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+
+<span class="c1"># TODO: allow for API key to be passed in or Env Var</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="run_test"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.run_test">[docs]</a><span class="k">def</span> <span class="nf">run_test</span><span class="p">():</span>
+
+    <span class="c1">#w = weather.Extract(api_key,settings={&quot;lang&quot;:&quot;FR&quot;})</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="c1"># This willa actually run the connx</span>
+    <span class="c1">#now = w.for_today_now([&#39;MA&#39;,&#39;Boston&#39;])</span>
+    <span class="c1">#now = w.today_now(&#39;02481&#39;)</span>
+
+    <span class="c1"># this will use cached version for testing</span>
+    <span class="c1">#feature_key = weather.Extract.FEATURE_RESPONSE_MAP[&#39;now&#39;]</span>
+    <span class="c1">#now = today.Now(data=today.now_response[feature_key])</span>
+    <span class="c1"># print(&quot;TEMP:&quot;,now.temp_f)</span>
+    <span class="c1"># print(type(now.temp_f))</span>
+    <span class="c1"># print(&quot;Nonshort:&quot;,now.data.display_location.full)</span>
+    <span class="c1"># pprint(now.data)</span>
+
+    <span class="c1"># feature_key = weather.Extract.FEATURE_RESPONSE_MAP[&#39;date&#39;]</span>
+    <span class="c1"># d = date.Date(data=date.date_response[feature_key])</span>
+    <span class="c1"># print(&quot;TEMP:&quot;,d.temp_f)</span>
+
+    <span class="c1"># # print all observations for the date specified</span>
+    <span class="c1"># [print(obs.date_pretty,obs.temp_f,obs.heat_index_f) for obs in d.observations]</span>
+
+    <span class="c1"># make a composite features request</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="s1">&#39;Boston&#39;</span><span class="p">]</span>
+    <span class="n">feature_context</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+                        <span class="p">(</span><span class="s1">&#39;today_historical&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+                        <span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s2">&quot;20161111&quot;</span><span class="p">),</span>
+                        <span class="p">)</span>
+    <span class="p">[</span><span class="n">now</span><span class="p">,</span><span class="n">history</span><span class="p">,</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="n">feature_context</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span></div>
+
+    <span class="c1"># this will use cached version for testing</span>
+    <span class="c1">#feature_key = weather.Extract.FEATURE_RESPONSE_MAP[&#39;daycast&#39;]</span>
+    <span class="c1">#feature_key = weather.Extract.FEATURE_RESPONSE_MAP[&#39;weekcast&#39;]</span>
+
+    <span class="c1"># print(feature_key)</span>
+    <span class="c1"># pprint(forecast.forecast_10_day_response)</span>
+    <span class="c1"># print(&#39;\n\n&#39;)</span>
+    <span class="c1">#response = forecast.daycast_response[feature_key]</span>
+    <span class="c1">#response = forecast.forecast_10_day_response[feature_key]</span>
+    <span class="c1">#futurecast = forecast.Forecast(data=response)</span>
+    <span class="c1"># print(&quot;DATE:&quot;,futurecast.date)</span>
+
+    <span class="c1"># for period in futurecast.periods:</span>
+    <span class="c1"># print(period.period)</span>
+    <span class="c1"># pprint(period.data)</span>
+    <span class="c1"># print(period.date_pretty)</span>
+    <span class="c1"># print(period.data.date.pretty)</span>
+    <span class="c1"># print(&#39;\n\n&#39;)</span>
+
+    <span class="c1"># Testing hurricane logic</span>
+    <span class="c1">#hurricane = w.hurricane()</span>
+    <span class="c1"># pprint(hurricane.data)</span>
+
+
+<div class="viewcode-block" id="TestAlerts"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAlerts">[docs]</a><span class="k">class</span> <span class="nc">TestAlerts</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestAlerts.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAlerts.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;alerts&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">alerts_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_alerts</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">({</span><span class="n">resp_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="TestAlerts.test_get_item_count"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAlerts.test_get_item_count">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_item_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_alerts</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">alerts</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect number of items&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestAlerts.test_get_one_item_data"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAlerts.test_get_one_item_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_one_item_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_alerts</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">alerts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="s1">&#39;Heat Advisory&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect data value&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestTodayHistorical"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayHistorical">[docs]</a><span class="k">class</span> <span class="nc">TestTodayHistorical</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestTodayHistorical.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayHistorical.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;today_historical&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">historical_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_today_historical</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestTodayHistorical.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayHistorical.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_today_historical</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">temp_high</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">F</span><span class="p">,</span> <span class="s1">&#39;71&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestTodayHistorical.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayHistorical.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_today_historical</span><span class="o">.</span><span class="n">high_avg_temp_f</span><span class="p">,</span> <span class="s1">&#39;71&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestAstronomy"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAstronomy">[docs]</a><span class="k">class</span> <span class="nc">TestAstronomy</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestAstronomy.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAstronomy.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;astronomy&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">astronomy_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_astronomy</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestAstronomy.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestAstronomy.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_astronomy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sunrise</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestTodayNow"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayNow">[docs]</a><span class="k">class</span> <span class="nc">TestTodayNow</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestTodayNow.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayNow.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;now&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">now_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response obj instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_today_now</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestTodayNow.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayNow.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_today_now</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">display_location</span><span class="o">.</span><span class="n">full</span><span class="p">,</span> <span class="s1">&#39;Boston, MA&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestTodayNow.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTodayNow.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_today_now</span><span class="o">.</span><span class="n">temp_f</span><span class="p">,</span> <span class="mf">47.1</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestHurricane"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHurricane">[docs]</a><span class="k">class</span> <span class="nc">TestHurricane</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestHurricane.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHurricane.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;hurricane&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">hurricane_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_hurricane</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span>
+            <span class="p">{</span><span class="n">resp_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="TestHurricane.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHurricane.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_hurricane</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">currenthurricane</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stormInfo</span><span class="o">.</span><span class="n">stormName_Nice</span><span class="p">,</span> <span class="s2">&quot;Hurricane Daniel&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestDaycast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDaycast">[docs]</a><span class="k">class</span> <span class="nc">TestDaycast</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestDaycast.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDaycast.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;daycast&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">daycast_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_daycast</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestDaycast.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDaycast.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_daycast</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">txt_forecast</span><span class="o">.</span><span class="n">forecastday</span><span class="p">),</span> <span class="mi">8</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestDaycast.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDaycast.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_daycast</span><span class="o">.</span><span class="n">periods</span><span class="p">),</span> <span class="mi">8</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestDaycast.test_shorthand_child_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDaycast.test_shorthand_child_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_child_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_daycast</span><span class="o">.</span><span class="n">periods</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">period</span><span class="o">.</span><span class="n">high_temp_f</span><span class="p">,</span> <span class="s2">&quot;68&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand child gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestWeekcast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestWeekcast">[docs]</a><span class="k">class</span> <span class="nc">TestWeekcast</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestWeekcast.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestWeekcast.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;weekcast&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">weekcast_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_weekcast</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestWeekcast.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestWeekcast.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_weekcast</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">txt_forecast</span><span class="o">.</span><span class="n">forecastday</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestWeekcast.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestWeekcast.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_weekcast</span><span class="o">.</span><span class="n">periods</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestWeekcast.test_shorthand_child_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestWeekcast.test_shorthand_child_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_child_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_weekcast</span><span class="o">.</span><span class="n">periods</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">period</span><span class="o">.</span><span class="n">high_temp_f</span><span class="p">,</span> <span class="s2">&quot;75&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand child gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestGeolookup"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestGeolookup">[docs]</a><span class="k">class</span> <span class="nc">TestGeolookup</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestGeolookup.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestGeolookup.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;geolookup&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">geolookup_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_geolookup</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestGeolookup.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestGeolookup.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_geolookup</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">nearby_weather_stations</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestDate"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDate">[docs]</a><span class="k">class</span> <span class="nc">TestDate</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestDate.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDate.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">date_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_date</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestDate.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDate.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_date</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">observations</span><span class="p">),</span> <span class="mi">25</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestDate.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDate.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_date</span><span class="o">.</span><span class="n">observations</span><span class="p">),</span> <span class="mi">25</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestDate.test_shorthand_child_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestDate.test_shorthand_child_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_child_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_date</span><span class="o">.</span><span class="n">observations</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">observation</span><span class="o">.</span><span class="n">temp_f</span><span class="p">,</span> <span class="s2">&quot;39.9&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand child gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestHourlyDaycast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHourlyDaycast">[docs]</a><span class="k">class</span> <span class="nc">TestHourlyDaycast</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestHourlyDaycast.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHourlyDaycast.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;hourly_daycast&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">hourly_daycast_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_hourly_daycast</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span>
+            <span class="p">{</span><span class="n">resp_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="TestHourlyDaycast.test_get_item_count"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHourlyDaycast.test_get_item_count">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_item_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_hourly_daycast</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">hourly_forecast</span><span class="p">),</span> <span class="mi">36</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect number of items&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHourlyDaycast.test_get_one_item_data"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestHourlyDaycast.test_get_one_item_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_one_item_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_hourly_daycast</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">hourly_forecast</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">english</span><span class="p">,</span> <span class="s1">&#39;66&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect data value&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestRange"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRange">[docs]</a><span class="k">class</span> <span class="nc">TestRange</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestRange.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRange.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;date_range&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">date_range_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_date_range</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestRange.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRange.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_date_range</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">temp_high</span><span class="o">.</span><span class="n">avg</span><span class="o">.</span><span class="n">F</span><span class="p">,</span> <span class="s1">&#39;71&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestRange.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRange.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_date_range</span><span class="o">.</span><span class="n">high_avg_temp_f</span><span class="p">,</span> <span class="s1">&#39;71&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestRawtide"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRawtide">[docs]</a><span class="k">class</span> <span class="nc">TestRawtide</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestRawtide.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRawtide.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;rawtide&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">rawtide_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_rawtide</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestRawtide.test_get_item_count"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRawtide.test_get_item_count">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_item_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_rawtide</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tideInfo</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect number of items&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestRawtide.test_get_one_item_data"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestRawtide.test_get_one_item_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_one_item_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_rawtide</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tideInfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tideSite</span><span class="p">,</span>
+                         <span class="s2">&quot;Newport Beach, Newport Bay Entrance, Corona del Mar, California&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect data value&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestTide"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTide">[docs]</a><span class="k">class</span> <span class="nc">TestTide</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestTide.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTide.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;tide&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">tide_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_tide</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestTide.test_get_item_count"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTide.test_get_item_count">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_item_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_tide</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tideInfo</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect number of items&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestTide.test_get_one_item_data"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestTide.test_get_one_item_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_one_item_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_tide</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tideSummary</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                         <span class="s2">&quot;Full Moon&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;Incorrect data value&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestYesterday"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestYesterday">[docs]</a><span class="k">class</span> <span class="nc">TestYesterday</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestYesterday.setUp"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestYesterday.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># feature specific vars</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;yesterday&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">test_responses</span><span class="o">.</span><span class="n">yesterday_response</span>
+
+        <span class="c1"># setup for feature</span>
+        <span class="n">resp_feature_key</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">FEATURE_RESPONSE_MAP</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span>
+        <span class="n">ctor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="o">.</span><span class="n">get_feature_class</span><span class="p">(</span><span class="n">feature_key</span><span class="p">)</span>
+
+        <span class="c1"># create response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_yesterday</span> <span class="o">=</span> <span class="n">ctor</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">resp_feature_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestYesterday.test_data_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestYesterday.test_data_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_data_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_yesterday</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">observations</span><span class="p">),</span> <span class="mi">26</span><span class="p">,</span>
+                         <span class="s1">&#39;data based gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestYesterday.test_shorthand_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestYesterday.test_shorthand_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_yesterday</span><span class="o">.</span><span class="n">observations</span><span class="p">),</span> <span class="mi">26</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand gets are broken&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestYesterday.test_shorthand_child_based_get"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.TestYesterday.test_shorthand_child_based_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_shorthand_child_based_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_yesterday</span><span class="o">.</span><span class="n">observations</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">observation</span><span class="o">.</span><span class="n">temp_f</span><span class="p">,</span> <span class="s2">&quot;59.0&quot;</span><span class="p">,</span>
+                         <span class="s1">&#39;shorhand child gets are broken&#39;</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="run_snippet"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.run_snippet">[docs]</a><span class="k">def</span> <span class="nf">run_snippet</span><span class="p">():</span>
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">run_test</span><span class="p">()</span></div>
+    <span class="c1">#run_snippet()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># main()</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">))</span>
+
+    <span class="c1">#local Ms</span>
+    <span class="kn">import</span> <span class="nn">test_responses</span>
+    <span class="kn">import</span> <span class="nn">weather</span>
+    <span class="kn">from</span> <span class="nn">weather</span> <span class="k">import</span> <span class="o">*</span>
+    
+    <span class="c1">#unittest.main()</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">WunderWeather</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Tyler Santos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,1139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WunderWeather package &#8212; WunderWeather 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="WunderWeather" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wunderweather-package">
+<h1>WunderWeather package<a class="headerlink" href="#wunderweather-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-WunderWeather.date">
+<span id="wunderweather-date-module"></span><h2>WunderWeather.date module<a class="headerlink" href="#module-WunderWeather.date" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-date"></span><dl class="class">
+<dt id="WunderWeather.date.Date">
+<em class="property">class </em><code class="descclassname">WunderWeather.date.</code><code class="descname">Date</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/date.html#Date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.date.Date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one (date) history type data feature response.</p>
+<dl class="attribute">
+<dt id="WunderWeather.date.Date.observations">
+<code class="descname">observations</code><a class="headerlink" href="#WunderWeather.date.Date.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract the observations for given date</p>
+<p class="rubric">Notes</p>
+<p>In a date based response (History,Yesterday) there is a list of observations.</p>
+<dl class="attribute">
+<dt>
+<code class="descname">observations</code></dt>
+<dd><p><em>list</em> – List of dictionaries for each observation for the date</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of Observation instances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Date.temp_c">
+<code class="descname">temp_c</code><a class="headerlink" href="#WunderWeather.date.Date.temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Date.temp_f">
+<code class="descname">temp_f</code><a class="headerlink" href="#WunderWeather.date.Date.temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.date.Observation">
+<em class="property">class </em><code class="descclassname">WunderWeather.date.</code><code class="descname">Observation</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/date.html#Observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.date.Observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one date based data feature’s observations</p>
+<dl class="attribute">
+<dt id="WunderWeather.date.Observation.date_pretty">
+<code class="descname">date_pretty</code><a class="headerlink" href="#WunderWeather.date.Observation.date_pretty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Observation.temp_c">
+<code class="descname">temp_c</code><a class="headerlink" href="#WunderWeather.date.Observation.temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Observation.temp_f">
+<code class="descname">temp_f</code><a class="headerlink" href="#WunderWeather.date.Observation.temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.date.Range">
+<em class="property">class </em><code class="descclassname">WunderWeather.date.</code><code class="descname">Range</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/date.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.date.Range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one (date) history type data feature response.</p>
+<dl class="attribute">
+<dt id="WunderWeather.date.Range.high_avg_temp_c">
+<code class="descname">high_avg_temp_c</code><a class="headerlink" href="#WunderWeather.date.Range.high_avg_temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Range.high_avg_temp_f">
+<code class="descname">high_avg_temp_f</code><a class="headerlink" href="#WunderWeather.date.Range.high_avg_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Range.low_avg_temp_c">
+<code class="descname">low_avg_temp_c</code><a class="headerlink" href="#WunderWeather.date.Range.low_avg_temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.date.Range.low_avg_temp_f">
+<code class="descname">low_avg_temp_f</code><a class="headerlink" href="#WunderWeather.date.Range.low_avg_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather.forecast">
+<span id="wunderweather-forecast-module"></span><h2>WunderWeather.forecast module<a class="headerlink" href="#module-WunderWeather.forecast" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-forecast"></span><dl class="class">
+<dt id="WunderWeather.forecast.Forecast">
+<em class="property">class </em><code class="descclassname">WunderWeather.forecast.</code><code class="descname">Forecast</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/forecast.html#Forecast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.forecast.Forecast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one Forecast-y type data feature response.</p>
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.date">
+<code class="descname">date</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.periods">
+<code class="descname">periods</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.periods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract the periods for given forecast</p>
+<p class="rubric">Notes</p>
+<p>In a forecast response there are two list of dictionaries. One list is
+of text representations for each period and the other list is detailed
+data of each period. This member joins the two lists together, merging
+dictionaries of matching period keys. Each list is not always sorted in
+period increasing order and some periods may be missing from each list.</p>
+<dl class="attribute">
+<dt>
+<code class="descname">periods</code></dt>
+<dd><p><cite>defaultdict</cite> – of period data</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.txt_periods">
+<code class="descname">txt_periods</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.txt_periods" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – list of dicts representing text period data</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.simple_periods">
+<code class="descname">simple_periods</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.simple_periods" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – list of dict representing detailed period data</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.list_of_periods">
+<code class="descname">list_of_periods</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.list_of_periods" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – single list of period dicts for processing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Forecast.period_dict">
+<code class="descname">period_dict</code><a class="headerlink" href="#WunderWeather.forecast.Forecast.period_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – One period in a period list being processed</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of Period instances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.forecast.Period">
+<em class="property">class </em><code class="descclassname">WunderWeather.forecast.</code><code class="descname">Period</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/forecast.html#Period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.forecast.Period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one Period in a forecast</p>
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Period.date_pretty">
+<code class="descname">date_pretty</code><a class="headerlink" href="#WunderWeather.forecast.Period.date_pretty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Period.high_temp_f">
+<code class="descname">high_temp_f</code><a class="headerlink" href="#WunderWeather.forecast.Period.high_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Period.period">
+<code class="descname">period</code><a class="headerlink" href="#WunderWeather.forecast.Period.period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Period.text">
+<code class="descname">text</code><a class="headerlink" href="#WunderWeather.forecast.Period.text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.forecast.Period.text_metric">
+<code class="descname">text_metric</code><a class="headerlink" href="#WunderWeather.forecast.Period.text_metric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather.test">
+<span id="wunderweather-test-module"></span><h2>WunderWeather.test module<a class="headerlink" href="#module-WunderWeather.test" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-test"></span><dl class="class">
+<dt id="WunderWeather.test.TestAlerts">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestAlerts</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAlerts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAlerts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestAlerts.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAlerts.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAlerts.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestAlerts.test_get_item_count">
+<code class="descname">test_get_item_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAlerts.test_get_item_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAlerts.test_get_item_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestAlerts.test_get_one_item_data">
+<code class="descname">test_get_one_item_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAlerts.test_get_one_item_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAlerts.test_get_one_item_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestAstronomy">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestAstronomy</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAstronomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAstronomy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestAstronomy.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAstronomy.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAstronomy.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestAstronomy.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestAstronomy.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestAstronomy.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestDate">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestDate</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestDate.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDate.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDate.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDate.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDate.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDate.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDate.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDate.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDate.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDate.test_shorthand_child_based_get">
+<code class="descname">test_shorthand_child_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDate.test_shorthand_child_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDate.test_shorthand_child_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestDaycast">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestDaycast</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDaycast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDaycast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestDaycast.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDaycast.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDaycast.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDaycast.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDaycast.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDaycast.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDaycast.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDaycast.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDaycast.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestDaycast.test_shorthand_child_based_get">
+<code class="descname">test_shorthand_child_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestDaycast.test_shorthand_child_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestDaycast.test_shorthand_child_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestGeolookup">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestGeolookup</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestGeolookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestGeolookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestGeolookup.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestGeolookup.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestGeolookup.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestGeolookup.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestGeolookup.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestGeolookup.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestHourlyDaycast">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestHourlyDaycast</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHourlyDaycast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHourlyDaycast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestHourlyDaycast.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHourlyDaycast.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHourlyDaycast.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestHourlyDaycast.test_get_item_count">
+<code class="descname">test_get_item_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHourlyDaycast.test_get_item_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHourlyDaycast.test_get_item_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestHourlyDaycast.test_get_one_item_data">
+<code class="descname">test_get_one_item_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHourlyDaycast.test_get_one_item_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHourlyDaycast.test_get_one_item_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestHurricane">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestHurricane</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHurricane"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHurricane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestHurricane.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHurricane.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHurricane.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestHurricane.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestHurricane.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestHurricane.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestRange">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestRange</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestRange.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRange.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRange.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestRange.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRange.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRange.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestRange.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRange.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRange.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestRawtide">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestRawtide</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRawtide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRawtide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestRawtide.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRawtide.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRawtide.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestRawtide.test_get_item_count">
+<code class="descname">test_get_item_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRawtide.test_get_item_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRawtide.test_get_item_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestRawtide.test_get_one_item_data">
+<code class="descname">test_get_one_item_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestRawtide.test_get_one_item_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestRawtide.test_get_one_item_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestTide">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestTide</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestTide.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTide.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTide.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTide.test_get_item_count">
+<code class="descname">test_get_item_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTide.test_get_item_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTide.test_get_item_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTide.test_get_one_item_data">
+<code class="descname">test_get_one_item_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTide.test_get_one_item_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTide.test_get_one_item_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestTodayHistorical">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestTodayHistorical</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayHistorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayHistorical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayHistorical.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayHistorical.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayHistorical.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayHistorical.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayHistorical.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayHistorical.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayHistorical.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayHistorical.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayHistorical.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestTodayNow">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestTodayNow</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayNow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayNow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayNow.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayNow.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayNow.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayNow.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayNow.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayNow.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestTodayNow.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestTodayNow.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestTodayNow.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestWeekcast">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestWeekcast</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestWeekcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestWeekcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestWeekcast.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestWeekcast.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestWeekcast.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestWeekcast.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestWeekcast.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestWeekcast.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestWeekcast.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestWeekcast.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestWeekcast.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestWeekcast.test_shorthand_child_based_get">
+<code class="descname">test_shorthand_child_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestWeekcast.test_shorthand_child_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestWeekcast.test_shorthand_child_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.test.TestYesterday">
+<em class="property">class </em><code class="descclassname">WunderWeather.test.</code><code class="descname">TestYesterday</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestYesterday"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestYesterday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="WunderWeather.test.TestYesterday.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestYesterday.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestYesterday.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestYesterday.test_data_based_get">
+<code class="descname">test_data_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestYesterday.test_data_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestYesterday.test_data_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestYesterday.test_shorthand_based_get">
+<code class="descname">test_shorthand_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestYesterday.test_shorthand_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestYesterday.test_shorthand_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.test.TestYesterday.test_shorthand_child_based_get">
+<code class="descname">test_shorthand_child_based_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#TestYesterday.test_shorthand_child_based_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.TestYesterday.test_shorthand_child_based_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="WunderWeather.test.main">
+<code class="descclassname">WunderWeather.test.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="WunderWeather.test.run_snippet">
+<code class="descclassname">WunderWeather.test.</code><code class="descname">run_snippet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#run_snippet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.run_snippet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="WunderWeather.test.run_test">
+<code class="descclassname">WunderWeather.test.</code><code class="descname">run_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/test.html#run_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.test.run_test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather.test_responses">
+<span id="wunderweather-test-responses-module"></span><h2>WunderWeather.test_responses module<a class="headerlink" href="#module-WunderWeather.test_responses" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-WunderWeather.today">
+<span id="wunderweather-today-module"></span><h2>WunderWeather.today module<a class="headerlink" href="#module-WunderWeather.today" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-today"></span><dl class="class">
+<dt id="WunderWeather.today.Historical">
+<em class="property">class </em><code class="descclassname">WunderWeather.today.</code><code class="descname">Historical</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/today.html#Historical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.today.Historical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one (today) almanac type data feature response.</p>
+<dl class="attribute">
+<dt id="WunderWeather.today.Historical.high_avg_temp_c">
+<code class="descname">high_avg_temp_c</code><a class="headerlink" href="#WunderWeather.today.Historical.high_avg_temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Historical.high_avg_temp_f">
+<code class="descname">high_avg_temp_f</code><a class="headerlink" href="#WunderWeather.today.Historical.high_avg_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Historical.low_avg_temp_c">
+<code class="descname">low_avg_temp_c</code><a class="headerlink" href="#WunderWeather.today.Historical.low_avg_temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Historical.low_avg_temp_f">
+<code class="descname">low_avg_temp_f</code><a class="headerlink" href="#WunderWeather.today.Historical.low_avg_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="WunderWeather.today.Now">
+<em class="property">class </em><code class="descclassname">WunderWeather.today.</code><code class="descname">Now</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/today.html#Now"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.today.Now" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#WunderWeather.weather_base.WeatherBase" title="WunderWeather.weather_base.WeatherBase"><code class="xref py py-class docutils literal"><span class="pre">WunderWeather.weather_base.WeatherBase</span></code></a></p>
+<p>Wrapper for one (today) conditions type data feature response.</p>
+<dl class="attribute">
+<dt id="WunderWeather.today.Now.temp_c">
+<code class="descname">temp_c</code><a class="headerlink" href="#WunderWeather.today.Now.temp_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Now.temp_f">
+<code class="descname">temp_f</code><a class="headerlink" href="#WunderWeather.today.Now.temp_f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Now.temp_pretty">
+<code class="descname">temp_pretty</code><a class="headerlink" href="#WunderWeather.today.Now.temp_pretty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.today.Now.weather">
+<code class="descname">weather</code><a class="headerlink" href="#WunderWeather.today.Now.weather" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather.weather">
+<span id="wunderweather-weather-module"></span><h2>WunderWeather.weather module<a class="headerlink" href="#module-WunderWeather.weather" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-weather"></span><dl class="class">
+<dt id="WunderWeather.weather.Extract">
+<em class="property">class </em><code class="descclassname">WunderWeather.weather.</code><code class="descname">Extract</code><span class="sig-paren">(</span><em>api_key</em>, <em>settings=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Encapsulate logic for extracting weather data</p>
+<p>This is the main point of entry to extract data from the weather underground service
+utilizing their public API.</p>
+<p class="rubric">Notes</p>
+<p><a class="reference external" href="https://www.wunderground.com/weather/api/d/docs">Wunderground Doc</a></p>
+<dl class="docutils">
+<dt>URL Request Format:</dt>
+<dd><cite>http://api.wunderground.com/api/&lt;API_KEY&gt;/features/settings/q/query.format</cite></dd>
+</dl>
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.BASE_URL">
+<code class="descname">BASE_URL</code><a class="headerlink" href="#WunderWeather.weather.Extract.BASE_URL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Base string used for URL generation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.FEATURE_URL">
+<code class="descname">FEATURE_URL</code><a class="headerlink" href="#WunderWeather.weather.Extract.FEATURE_URL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – string template to generate URL for a feature request</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.HURRICANE_URL">
+<code class="descname">HURRICANE_URL</code><a class="headerlink" href="#WunderWeather.weather.Extract.HURRICANE_URL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – string template to generate URL for a hurricane feature request</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.FEATURE_URL_MAP">
+<code class="descname">FEATURE_URL_MAP</code><a class="headerlink" href="#WunderWeather.weather.Extract.FEATURE_URL_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – Mapping of module’s feature key to wunderground’s key in the URL</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.FEATURE_RESPONSE_MAP">
+<code class="descname">FEATURE_RESPONSE_MAP</code><a class="headerlink" href="#WunderWeather.weather.Extract.FEATURE_RESPONSE_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – Mapping of module’s feature key to wunderground’s key in the response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.FEATURE_CLASS_MAP">
+<code class="descname">FEATURE_CLASS_MAP</code><a class="headerlink" href="#WunderWeather.weather.Extract.FEATURE_CLASS_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – Mapping of module’s feature key to the object definition to generate an instance</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">BASE_URL</code><em class="property"> = 'http://api.wunderground.com/api'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FEATURE_CLASS_MAP</code><em class="property"> = {'cams': 'weather_base.WeatherBase', 'date_range': 'date.Range', 'hourly_daycast': 'weather_base.WeatherBase', 'weekcast': 'forecast.Forecast', 'yesterday': 'date.Date', 'hurricane': 'weather_base.WeatherBase', 'rawtide': 'weather_base.WeatherBase', 'now': 'today.Now', 'today_historical': 'today.Historical', 'tide': 'weather_base.WeatherBase', 'date': 'date.Date', 'hourly_weekcast': 'weather_base.WeatherBase', 'satelite': 'weather_base.WeatherBase', 'geolookup': 'weather_base.WeatherBase', 'alerts': 'weather_base.WeatherBase', 'daycast': 'forecast.Forecast', 'astronomy': 'weather_base.WeatherBase'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FEATURE_RESPONSE_MAP</code><em class="property"> = {'cams': 'webcams', 'date_range': 'trip', 'hourly_daycast': 'hourly_forecast', 'weekcast': 'forecast', 'yesterday': 'history', 'hurricane': 'currenthurricane', 'rawtide': 'rawtide', 'now': 'current_observation', 'today_historical': 'almanac', 'tide': 'tide', 'date': 'history', 'hourly_weekcast': 'hourly_forecast', 'satelite': 'satelite', 'geolookup': 'location', 'alerts': 'alerts', 'daycast': 'forecast', 'astronomy': 'moon_phase'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FEATURE_URL</code><em class="property"> = 'http://api.wunderground.com/api/{key}/{features}/{settings}/q/{query}.{format}'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FEATURE_URL_MAP</code><em class="property"> = {'cams': 'webcams', 'date_range': 'planner_', 'hourly_daycast': 'hourly', 'weekcast': 'forecast10day', 'yesterday': 'yesterday', 'hurricane': 'currenthurricane', 'rawtide': 'rawtide', 'now': 'conditions', 'today_historical': 'almanac', 'tide': 'tide', 'date': 'history_', 'hourly_weekcast': 'hourly10day', 'satelite': 'satelite', 'geolookup': 'geolookup', 'alerts': 'alerts', 'daycast': 'forecast', 'astronomy': 'astronomy'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">HURRICANE_URL</code><em class="property"> = 'http://api.wunderground.com/api/{key}/{feature}/{settings}/view.{format}'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.date">
+<code class="descname">date</code><span class="sig-paren">(</span><em>query</em>, <em>date</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the history data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</li>
+<li><strong>date</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Date in the form YYYYMMDD.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.feature_context">
+<code class="descname">feature_context</code><a class="headerlink" href="#WunderWeather.weather.Extract.feature_context" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.date_range">
+<code class="descname">date_range</code><span class="sig-paren">(</span><em>query</em>, <em>date_range</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.date_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.date_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the planner data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</li>
+<li><strong>date_range</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Date range (30 day max) in the form MMDDMMDD.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">and necessary data for that feature</code></dt>
+<dd></dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.daycast">
+<code class="descname">daycast</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.daycast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.daycast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the forcast data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.features">
+<code class="descname">features</code><span class="sig-paren">(</span><em>query</em>, <em>feature_context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Central logic for making data feature requests</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</li>
+<li><strong>feature_context</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) – tuple of tuples to supply feature of interest
+and necessary data for that feature</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.query">
+<code class="descname">query</code><a class="headerlink" href="#WunderWeather.weather.Extract.query" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – Strings for URL generation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.feature_codes">
+<code class="descname">feature_codes</code><a class="headerlink" href="#WunderWeather.weather.Extract.feature_codes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Final format for URL feature keys (with data appended)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.context">
+<code class="descname">context</code><a class="headerlink" href="#WunderWeather.weather.Extract.context" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – final formatted data for URL template</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.response">
+<code class="descname">response</code><a class="headerlink" href="#WunderWeather.weather.Extract.response" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – JSON response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.ctor">
+<code class="descname">ctor</code><a class="headerlink" href="#WunderWeather.weather.Extract.ctor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>obj</em> – Object Class Reference to generate an instance.
+Could be one of</p>
+<ul class="simple">
+<li><code class="xref py py-mod docutils literal"><span class="pre">weather_base.WeatherBase</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">today.Now</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">today.Historical</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">forcast.Daycast</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">forcast.Weekcast</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">date.Date</span></code></li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">date.Range</span></code></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.weather_features">
+<code class="descname">weather_features</code><a class="headerlink" href="#WunderWeather.weather.Extract.weather_features" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – Instances to be retuned. Offset could be None
+if there was no response for the supplied data feature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.feature_key">
+<code class="descname">feature_key</code><a class="headerlink" href="#WunderWeather.weather.Extract.feature_key" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Module’s feature key</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.response_feature_key">
+<code class="descname">response_feature_key</code><a class="headerlink" href="#WunderWeather.weather.Extract.response_feature_key" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Module’s feature key for URL response</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of weather_features. Offsets returned in the order they are supplied
+in the feature_context arg. Offset could be none if no response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="WunderWeather.weather.Extract.get_feature_class">
+<em class="property">classmethod </em><code class="descname">get_feature_class</code><span class="sig-paren">(</span><em>feature_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.get_feature_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.get_feature_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the class definition for a particular feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feature_key</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – internal key for feature</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Class definition for feature</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.hurricane">
+<code class="descname">hurricane</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.hurricane"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.hurricane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface with the current hurricane data feature</p>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_key</code></dt>
+<dd><p><em>str</em> – Module feature key</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">context</code></dt>
+<dd><p><em>dict</em> – Used to populate feature URL template</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">response</code></dt>
+<dd><p><em>dict</em> – JSON representation of the response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">response_feature_key</code></dt>
+<dd><p><em>str</em> – Module feature key’s key for response parsing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">ctor</code></dt>
+<dd><p><cite>weather.WeatherBase</cite> – Reference to class to potentially generate an instance</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather.weather_base instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.today_historical">
+<code class="descname">today_historical</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.today_historical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.today_historical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the almanac data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.today_now">
+<code class="descname">today_now</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.today_now"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.today_now" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the conditions data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.weekcast">
+<code class="descname">weekcast</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.weekcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.weekcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the forcast10day data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather.weather_base">
+<span id="wunderweather-weather-base-module"></span><h2>WunderWeather.weather_base module<a class="headerlink" href="#module-WunderWeather.weather_base" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-weather_base"></span><dl class="class">
+<dt id="WunderWeather.weather_base.WeatherBase">
+<em class="property">class </em><code class="descclassname">WunderWeather.weather_base.</code><code class="descname">WeatherBase</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather_base.html#WeatherBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather_base.WeatherBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Wrapper for one all data feature responses.</p>
+<dl class="attribute">
+<dt id="WunderWeather.weather_base.WeatherBase.data">
+<code class="descname">data</code><a class="headerlink" href="#WunderWeather.weather_base.WeatherBase.data" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>EasyDict</cite> – dictionary that allows for ‘dotted’ key references</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather_base.WeatherBase.__data">
+<code class="descname">__data</code><a class="headerlink" href="#WunderWeather.weather_base.WeatherBase.__data" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – python dict, JSON representation of portion of response of interest</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="WunderWeather.weather_base.WeatherBase.NAN">
+<code class="descname">NAN</code><a class="headerlink" href="#WunderWeather.weather_base.WeatherBase.NAN" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – list of values that are considered to be no data N/A type values</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">NAN</code><em class="property"> = [-999, -9999]</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather_base.WeatherBase.extract_value">
+<code class="descname">extract_value</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather_base.html#WeatherBase.extract_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather_base.WeatherBase.extract_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor to interface with feature response</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keys</strong> (<em>list</em>) – list of keys to drill down into nested dictionaries</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">value of interest or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-WunderWeather">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-WunderWeather" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">WunderWeather</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">WunderWeather</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">WunderWeather</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WunderWeather package</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Tyler Santos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/WunderWeather.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
