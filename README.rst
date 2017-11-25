@@ -63,7 +63,7 @@ The following code snippets are examples of extracting data from data feature re
 
 *Example listed in Wunderground documentation*
 
-.. code-block:: python
+.. code:: python
 	:linenos:
 
 	import urllib2
@@ -82,7 +82,7 @@ The following code snippets are examples of extracting data from data feature re
 
 *Example listed in Wunderground doc converted to use requests*
 
-.. code-block:: python
+.. code:: python
 	:linenos:
 
 	import requests # learn more: https://python.org/pypi/requests
@@ -95,7 +95,7 @@ The following code snippets are examples of extracting data from data feature re
 
 *Example listed in Wunderground doc converted to use WunderWeather*
 
-.. code-block:: python
+.. code:: python
 	:linenos:
 
 	from wunder import weather

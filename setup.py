@@ -17,14 +17,15 @@ setup(
   # to include addl files
   package_data={
     '':['*.rst','*.txt'],
-    }
+    },
   install_requires = ['easydict','requests'],
-  version = '0.2.7',
+  version = '0.2.8',
   description = 'Wrapper for Weather Underground API',
   long_description = long_description,
   author = 'Tyler Santos',
   author_email = '1tsantos7+wunderweather@gmail.com',
-  url = 'https://github.com/T-Santos/WunderWeather',
+  url = 'http://wunderweather.readthedocs.io/en/latest/',
+  download_url = 'https://github.com/T-Santos/WunderWeather',
   keywords = ['weather', 'wunderground'],
   classifiers = [
     'Development Status :: 3 - Alpha',
