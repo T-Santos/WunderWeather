@@ -64,7 +64,6 @@ The following code snippets are examples of extracting data from data feature re
 *Example listed in Wunderground documentation*
 
 .. code:: python
-	:linenos:
 
 	import urllib2
 	import json
@@ -83,7 +82,6 @@ The following code snippets are examples of extracting data from data feature re
 *Example listed in Wunderground doc converted to use requests*
 
 .. code:: python
-	:linenos:
 
 	import requests # learn more: https://python.org/pypi/requests
 	response = requests.get('http://api.wunderground.com/api/<YOUR_API_KEY>/geolookup/conditions/q/MA/Boston.json').json()
@@ -96,7 +94,6 @@ The following code snippets are examples of extracting data from data feature re
 *Example listed in Wunderground doc converted to use WunderWeather*
 
 .. code:: python
-	:linenos:
 
 	from wunder import weather
 	extractor = weather.Extract(api_key)
