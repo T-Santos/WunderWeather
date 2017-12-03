@@ -19,7 +19,7 @@ setup(
     '':['*.rst','*.txt'],
     },
   install_requires = ['easydict','requests'],
-  version = '0.2.8',
+  version = '0.2.9',
   description = 'Wrapper for Weather Underground API',
   long_description = long_description,
   author = 'Tyler Santos',

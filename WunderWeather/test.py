@@ -447,11 +447,19 @@ class TestYesterday(unittest.TestCase):
                          'shorhand child gets are broken')
 
 def run_snippet():
+    extractor = weather.Extract(api_key)
+    
+    #[location,current] = extractor.features("MA/Boston",(('geolookup',''),('now','')))
+    #print("Current Temperature in %s is: %s" %(location.data.city,current.temp_f))
+
+    [satellite] = extractor.features('MA/Boston',(('satellite',''),))
+    pprint(satellite.data)
+
     pass
 
 def main():
-    run_test()
-    #run_snippet()
+    #run_test()
+    run_snippet()
 
 
 if __name__ == '__main__':

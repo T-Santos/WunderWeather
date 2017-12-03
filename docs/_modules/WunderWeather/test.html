@@ -488,11 +488,19 @@
                          <span class="s1">&#39;shorhand child gets are broken&#39;</span><span class="p">)</span></div></div>
 
 <div class="viewcode-block" id="run_snippet"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.run_snippet">[docs]</a><span class="k">def</span> <span class="nf">run_snippet</span><span class="p">():</span>
+    <span class="n">extractor</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">Extract</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+    
+    <span class="c1">#[location,current] = extractor.features(&quot;MA/Boston&quot;,((&#39;geolookup&#39;,&#39;&#39;),(&#39;now&#39;,&#39;&#39;)))</span>
+    <span class="c1">#print(&quot;Current Temperature in %s is: %s&quot; %(location.data.city,current.temp_f))</span>
+
+    <span class="p">[</span><span class="n">satellite</span><span class="p">]</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="s1">&#39;MA/Boston&#39;</span><span class="p">,((</span><span class="s1">&#39;satellite&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),))</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">satellite</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.test.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">run_test</span><span class="p">()</span></div>
-    <span class="c1">#run_snippet()</span>
+    <span class="c1">#run_test()</span>
+    <span class="n">run_snippet</span><span class="p">()</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
