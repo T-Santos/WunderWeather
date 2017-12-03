@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # WunderWeather documentation build configuration file, created by
-# sphinx-quickstart on Wed Nov 15 20:54:03 2017.
+# sphinx-quickstart on Sun Dec  3 16:31:27 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -21,6 +21,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
 
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -32,15 +33,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 # ones.
 extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.coverage',
-    'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages']
-
-# napoleon_google_docstring = False
-# napoleon_use_param = False
-# napoleon_use_ivar = True    
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -97,7 +91,7 @@ html_theme = 'alabaster'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-# http://alabaster.readthedocs.io/en/latest/customization.html
+#
 # html_theme_options = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -114,7 +108,6 @@ html_sidebars = {
     '**': [
         'relations.html',  # needs 'show_related': True theme option to display
         'searchbox.html',
-        'navigation.html',
     ]
 }
 
@@ -177,6 +170,3 @@ texinfo_documents = [
 
 
 
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
