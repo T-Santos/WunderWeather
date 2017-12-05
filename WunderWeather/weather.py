@@ -253,7 +253,7 @@ class Extract():
 
         """
         feature_context = (('date', date),)
-        return self.for_features(query, feature_context)[0]
+        return self.features(query, feature_context)[0]
 
     def date_range(self, query, date_range):
         """Shorthand to interface with the planner data feature
