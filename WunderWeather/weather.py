@@ -151,10 +151,61 @@ class Extract():
                 and necessary data for that feature
 
         Returns:
-            today.Now instance or None
+            weather_base.WeatherBase instance or None
 
         """
         feature_context = (('alerts', ''),)
+        return self.features(query, feature_context)[0]
+
+    def astronomy(self, query):
+        """Shorthand to interface with the astronomy data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('astronomy', ''),)
+        return self.features(query, feature_context)[0]
+
+    def cams(self, query):
+        """Shorthand to interface with the webcams data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('cams', ''),)
+        return self.features(query, feature_context)[0]
+
+    def geolookup(self, query):
+        """Shorthand to interface with the geolookup data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('geolookup', ''),)
         return self.features(query, feature_context)[0]
 
     def hurricane(self):
@@ -168,7 +219,7 @@ class Extract():
             ctor (`weather.WeatherBase`): Reference to class to potentially generate an instance
 
         Returns:
-            weather.weather_base instance or None
+            weather_base.WeatherBase instance or None
 
         """
         feature_key = 'hurricane'
@@ -214,10 +265,27 @@ class Extract():
                 and necessary data for that feature
 
         Returns:
-            today.Now instance or None
+            today.Historical instance or None
 
         """
         feature_context = (('today_historical', ''),)
+        return self.features(query, feature_context)[0]
+
+    def hourly_daycast(self, query):
+        """Shorthand to interface with the hourly data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('hourly_daycast', ''),)
         return self.features(query, feature_context)[0]
 
     def daycast(self, query):
@@ -237,6 +305,23 @@ class Extract():
         feature_context = (('daycast', ''),)
         return self.features(query, feature_context)[0]
 
+    def hourly_weekcast(self, query):
+        """Shorthand to interface with the hourly10day data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather.Weather_Base instance or None
+
+        """
+        feature_context = (('weekcast', ''),)
+        return self.features(query, feature_context)[0]
+
     def weekcast(self, query):
         """Shorthand to interface with the forcast10day data feature
 
@@ -248,7 +333,7 @@ class Extract():
                 and necessary data for that feature
 
         Returns:
-            today.Now instance or None
+            forecast.Forecast instance or None
 
         """
         feature_context = (('weekcast', ''),)
@@ -266,7 +351,7 @@ class Extract():
                 and necessary data for that feature
 
         Returns:
-            today.Now instance or None
+            date.Date instance or None
 
         """
         feature_context = (('date', date),)
@@ -284,10 +369,78 @@ class Extract():
             and necessary data for that feature
 
         Returns:
-            today.Now instance or None
+            date.Range instance or None
 
         """
         feature_context = (('date_range', date_range),)
+        return self.features(query, feature_context)[0]
+
+    def rawtide(self, query):
+        """Shorthand to interface with the rawtide data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('rawtide', ''),)
+        return self.features(query, feature_context)[0]
+
+    def satellite(self, query):
+        """Shorthand to interface with the satellite data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('satellite', ''),)
+        return self.features(query, feature_context)[0]
+
+    def tide(self, query):
+        """Shorthand to interface with the tide data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            weather_base.WeatherBase instance or None
+
+        """
+        feature_context = (('tide', ''),)
+        return self.features(query, feature_context)[0]
+
+    def yesterday(self, query):
+        """Shorthand to interface with the yesterday data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            date.Date instance or None
+
+        """
+        feature_context = (('yesterday', ''),)
         return self.features(query, feature_context)[0]
 
     def features(self, query, feature_context):

@@ -50,6 +50,11 @@ When developing WunderWeather there were a few key concepts kept in mind which a
 		* temp_i vs temp_f
 		* temp_m vs temp_c 
 
+Installation
+############
+
+``pip install WunderWeather``
+
 Code Examples
 #############
 
@@ -60,6 +65,9 @@ The following code snippets are examples of extracting data from data feature re
 
 .. note::
 	Because the `requests package <http://docs.python-requests.org/en/master/>`_ is awesome, we're going to be using that to make our requests in the following examples. We use it to make requests in our package and so should you!
+
+Weather Underground Example
+----------------------------
 
 **Not using Requests**
 
@@ -106,6 +114,44 @@ The following code snippets are examples of extracting data from data feature re
 	print("Current Temperature in %s is: %s" %(location.data.city,current.temp_f))
 
 *In the example above, notice how data points can be extracted from a feature using dotted notation whether there is a feature specific wrapper class or not to provide a uniform look in the calling application. When referencing shortcuts from wrapper classes or directly accessing the data, the look is the same. As of writing this documentation Geolookup does not have a wrapper so all data extracted from that feature must use the* ``WeatherBase.data`` *member to use the dotted notation.*
+
+Additional Examples
+-------------------
+
+.. code-block:: python
+    :linenos:
+
+    From pprint import pprint
+    import arrow
+    From WunderWeather import weather
+
+    # setup
+    api_key = "your api key"
+    location = 'MA/Boston'
+    extractor = weather.Extract(api_key)
+
+    # alerts
+    response = extractor.alerts(location)
+    pprint(response.data)
+
+    # astronomy
+    response = extractor.astronomy(location)
+    pprint(response.data)
+
+    # geolookup
+    response = extractor.geolookup(location)
+    pprint(response.data)
+
+    # history
+    date = arrow.get("20170601","YYYYMMDD")
+    response = extractor.date(location,date.format('YYYYMMDD'))
+    pprint(response.data)
+
+    # addl date detail
+    for observation in response.observations:
+    print("Date:",observation.date_pretty)
+    print("Temp:",observation.temp_f)
+
 
 Explore the WunderWeather API
 #############################

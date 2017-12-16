@@ -181,6 +181,74 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
 
+<div class="viewcode-block" id="Extract.alerts"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.alerts">[docs]</a>    <span class="k">def</span> <span class="nf">alerts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the alerts data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;alerts&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.astronomy"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.astronomy">[docs]</a>    <span class="k">def</span> <span class="nf">astronomy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the astronomy data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;astronomy&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.cams"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.cams">[docs]</a>    <span class="k">def</span> <span class="nf">cams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the webcams data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;cams&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.geolookup"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.geolookup">[docs]</a>    <span class="k">def</span> <span class="nf">geolookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the geolookup data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;geolookup&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
 <div class="viewcode-block" id="Extract.hurricane"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.hurricane">[docs]</a>    <span class="k">def</span> <span class="nf">hurricane</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Interface with the current hurricane data feature</span>
 
@@ -192,7 +260,7 @@
 <span class="sd">            ctor (`weather.WeatherBase`): Reference to class to potentially generate an instance</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            weather.weather_base instance or None</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;hurricane&#39;</span>
@@ -238,10 +306,27 @@
 <span class="sd">                and necessary data for that feature</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            today.Now instance or None</span>
+<span class="sd">            today.Historical instance or None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;today_historical&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.hourly_daycast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.hourly_daycast">[docs]</a>    <span class="k">def</span> <span class="nf">hourly_daycast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the hourly data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;hourly_daycast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Extract.daycast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.daycast">[docs]</a>    <span class="k">def</span> <span class="nf">daycast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
@@ -261,6 +346,23 @@
         <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;daycast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
+<div class="viewcode-block" id="Extract.hourly_weekcast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.hourly_weekcast">[docs]</a>    <span class="k">def</span> <span class="nf">hourly_weekcast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the hourly10day data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather.Weather_Base instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;weekcast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
 <div class="viewcode-block" id="Extract.weekcast"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.weekcast">[docs]</a>    <span class="k">def</span> <span class="nf">weekcast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand to interface with the forcast10day data feature</span>
 
@@ -272,7 +374,7 @@
 <span class="sd">                and necessary data for that feature</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            today.Now instance or None</span>
+<span class="sd">            forecast.Forecast instance or None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;weekcast&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
@@ -290,11 +392,11 @@
 <span class="sd">                and necessary data for that feature</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            today.Now instance or None</span>
+<span class="sd">            date.Date instance or None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">),)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">for_features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Extract.date_range"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.date_range">[docs]</a>    <span class="k">def</span> <span class="nf">date_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">date_range</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand to interface with the planner data feature</span>
@@ -308,10 +410,78 @@
 <span class="sd">            and necessary data for that feature</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            today.Now instance or None</span>
+<span class="sd">            date.Range instance or None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;date_range&#39;</span><span class="p">,</span> <span class="n">date_range</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.rawtide"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.rawtide">[docs]</a>    <span class="k">def</span> <span class="nf">rawtide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the rawtide data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;rawtide&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.satellite"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.satellite">[docs]</a>    <span class="k">def</span> <span class="nf">satellite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the satellite data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;satellite&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.tide"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.tide">[docs]</a>    <span class="k">def</span> <span class="nf">tide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the tide data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            weather_base.WeatherBase instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;tide&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Extract.yesterday"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.yesterday">[docs]</a>    <span class="k">def</span> <span class="nf">yesterday</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand to interface with the yesterday data feature</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str or list): string or list of strings for query portion of URL generation</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            feature_context (tuple): tuple of tuples to give feature of interest</span>
+<span class="sd">                and necessary data for that feature</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            date.Date instance or None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_context</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;yesterday&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Extract.features"><a class="viewcode-back" href="../../WunderWeather.html#WunderWeather.weather.Extract.features">[docs]</a>    <span class="k">def</span> <span class="nf">features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">feature_context</span><span class="p">):</span>
@@ -373,7 +543,7 @@
 
                 <span class="c1"># if we get a list back as the high level item</span>
                 <span class="c1"># keep the feature key in there as a single key dict</span>
-                <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
                     <span class="n">weather_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">ctor</span><span class="p">({</span><span class="n">response_feature_key</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="n">response_feature_key</span><span class="p">]}))</span>
                 <span class="k">else</span><span class="p">:</span>

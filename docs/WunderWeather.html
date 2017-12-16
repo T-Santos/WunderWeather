@@ -667,12 +667,12 @@ utilizing their public API.</p>
 
 <dl class="attribute">
 <dt>
-<code class="descname">FEATURE_CLASS_MAP</code><em class="property"> = {'now': 'today.Now', 'daycast': 'forecast.Forecast', 'rawtide': 'weather_base.WeatherBase', 'alerts': 'weather_base.WeatherBase', 'date': 'date.Date', 'astronomy': 'weather_base.WeatherBase', 'today_historical': 'today.Historical', 'date_range': 'date.Range', 'geolookup': 'weather_base.WeatherBase', 'hurricane': 'weather_base.WeatherBase', 'hourly_weekcast': 'weather_base.WeatherBase', 'cams': 'weather_base.WeatherBase', 'hourly_daycast': 'weather_base.WeatherBase', 'weekcast': 'forecast.Forecast', 'yesterday': 'date.Date', 'tide': 'weather_base.WeatherBase', 'satellite': 'weather_base.WeatherBase'}</em></dt>
+<code class="descname">FEATURE_CLASS_MAP</code><em class="property"> = {'date_range': 'date.Range', 'hurricane': 'weather_base.WeatherBase', 'astronomy': 'weather_base.WeatherBase', 'daycast': 'forecast.Forecast', 'hourly_daycast': 'weather_base.WeatherBase', 'yesterday': 'date.Date', 'weekcast': 'forecast.Forecast', 'date': 'date.Date', 'satellite': 'weather_base.WeatherBase', 'now': 'today.Now', 'rawtide': 'weather_base.WeatherBase', 'cams': 'weather_base.WeatherBase', 'today_historical': 'today.Historical', 'tide': 'weather_base.WeatherBase', 'hourly_weekcast': 'weather_base.WeatherBase', 'geolookup': 'weather_base.WeatherBase', 'alerts': 'weather_base.WeatherBase'}</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt>
-<code class="descname">FEATURE_RESPONSE_MAP</code><em class="property"> = {'now': 'current_observation', 'daycast': 'forecast', 'rawtide': 'rawtide', 'alerts': 'alerts', 'date': 'history', 'astronomy': 'moon_phase', 'today_historical': 'almanac', 'date_range': 'trip', 'geolookup': 'location', 'hurricane': 'currenthurricane', 'hourly_weekcast': 'hourly_forecast', 'cams': 'webcams', 'hourly_daycast': 'hourly_forecast', 'weekcast': 'forecast', 'yesterday': 'history', 'tide': 'tide', 'satellite': 'satellite'}</em></dt>
+<code class="descname">FEATURE_RESPONSE_MAP</code><em class="property"> = {'date_range': 'trip', 'hurricane': 'currenthurricane', 'astronomy': 'moon_phase', 'daycast': 'forecast', 'hourly_daycast': 'hourly_forecast', 'yesterday': 'history', 'weekcast': 'forecast', 'date': 'history', 'satellite': 'satellite', 'now': 'current_observation', 'rawtide': 'rawtide', 'cams': 'webcams', 'today_historical': 'almanac', 'tide': 'tide', 'hourly_weekcast': 'hourly_forecast', 'geolookup': 'location', 'alerts': 'alerts'}</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -682,13 +682,100 @@ utilizing their public API.</p>
 
 <dl class="attribute">
 <dt>
-<code class="descname">FEATURE_URL_MAP</code><em class="property"> = {'now': 'conditions', 'daycast': 'forecast', 'rawtide': 'rawtide', 'alerts': 'alerts', 'date': 'history_', 'astronomy': 'astronomy', 'today_historical': 'almanac', 'date_range': 'planner_', 'geolookup': 'geolookup', 'hurricane': 'currenthurricane', 'hourly_weekcast': 'hourly10day', 'cams': 'webcams', 'hourly_daycast': 'hourly', 'weekcast': 'forecast10day', 'yesterday': 'yesterday', 'tide': 'tide', 'satellite': 'satellite'}</em></dt>
+<code class="descname">FEATURE_URL_MAP</code><em class="property"> = {'date_range': 'planner_', 'hurricane': 'currenthurricane', 'astronomy': 'astronomy', 'daycast': 'forecast', 'hourly_daycast': 'hourly', 'yesterday': 'yesterday', 'weekcast': 'forecast10day', 'date': 'history_', 'satellite': 'satellite', 'now': 'conditions', 'rawtide': 'rawtide', 'cams': 'webcams', 'today_historical': 'almanac', 'tide': 'tide', 'hourly_weekcast': 'hourly10day', 'geolookup': 'geolookup', 'alerts': 'alerts'}</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt>
 <code class="descname">HURRICANE_URL</code><em class="property"> = 'http://api.wunderground.com/api/{key}/{feature}/{settings}/view.{format}'</em></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.alerts">
+<code class="descname">alerts</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.alerts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.alerts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the alerts data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="WunderWeather.weather.Extract.feature_context">
+<code class="descname">feature_context</code><a class="headerlink" href="#WunderWeather.weather.Extract.feature_context" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.astronomy">
+<code class="descname">astronomy</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.astronomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.astronomy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the astronomy data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.cams">
+<code class="descname">cams</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.cams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.cams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the webcams data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="WunderWeather.weather.Extract.date">
@@ -707,8 +794,8 @@ utilizing their public API.</p>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="WunderWeather.weather.Extract.feature_context">
-<code class="descname">feature_context</code><a class="headerlink" href="#WunderWeather.weather.Extract.feature_context" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">feature_context</code></dt>
 <dd><p><em>tuple</em> – tuple of tuples to give feature of interest
 and necessary data for that feature</p>
 </dd></dl>
@@ -717,7 +804,7 @@ and necessary data for that feature</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">date.Date instance or None</td>
 </tr>
 </tbody>
 </table>
@@ -754,7 +841,7 @@ and necessary data for that feature</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">date.Range instance or None</td>
 </tr>
 </tbody>
 </table>
@@ -876,6 +963,35 @@ in the feature_context arg. Offset could be none if no response</td>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.geolookup">
+<code class="descname">geolookup</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.geolookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.geolookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the geolookup data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="WunderWeather.weather.Extract.get_feature_class">
 <em class="property">classmethod </em><code class="descname">get_feature_class</code><span class="sig-paren">(</span><em>feature_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.get_feature_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.get_feature_class" title="Permalink to this definition">¶</a></dt>
@@ -887,6 +1003,64 @@ in the feature_context arg. Offset could be none if no response</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feature_key</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – internal key for feature</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Class definition for feature</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.hourly_daycast">
+<code class="descname">hourly_daycast</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.hourly_daycast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.hourly_daycast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the hourly data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.hourly_weekcast">
+<code class="descname">hourly_weekcast</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.hourly_weekcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.hourly_weekcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the hourly10day data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather.Weather_Base instance or None</td>
 </tr>
 </tbody>
 </table>
@@ -930,7 +1104,94 @@ in the feature_context arg. Offset could be none if no response</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather.weather_base instance or None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.rawtide">
+<code class="descname">rawtide</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.rawtide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.rawtide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the rawtide data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.satellite">
+<code class="descname">satellite</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.satellite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.satellite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the satellite data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.tide">
+<code class="descname">tide</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.tide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.tide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the tide data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">weather_base.WeatherBase instance or None</td>
 </tr>
 </tbody>
 </table>
@@ -959,7 +1220,7 @@ and necessary data for that feature</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Historical instance or None</td>
 </tr>
 </tbody>
 </table>
@@ -1017,7 +1278,36 @@ and necessary data for that feature</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">today.Now instance or None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">forecast.Forecast instance or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="WunderWeather.weather.Extract.yesterday">
+<code class="descname">yesterday</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WunderWeather/weather.html#Extract.yesterday"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WunderWeather.weather.Extract.yesterday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to interface with the yesterday data feature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>list</em>) – string or list of strings for query portion of URL generation</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">feature_context</code></dt>
+<dd><p><em>tuple</em> – tuple of tuples to give feature of interest
+and necessary data for that feature</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">date.Date instance or None</td>
 </tr>
 </tbody>
 </table>
