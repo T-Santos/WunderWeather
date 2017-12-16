@@ -140,6 +140,23 @@ class Extract():
 
         self.format = 'json'
 
+    def alerts(self, query):
+        """Shorthand to interface with the conditions data feature
+
+        Args:
+            query (str or list): string or list of strings for query portion of URL generation
+
+        Attributes:
+            feature_context (tuple): tuple of tuples to give feature of interest
+                and necessary data for that feature
+
+        Returns:
+            today.Now instance or None
+
+        """
+        feature_context = (('alerts', ''),)
+        return self.features(query, feature_context)[0]
+
     def hurricane(self):
         """Interface with the current hurricane data feature
 
@@ -332,7 +349,7 @@ class Extract():
 
                 # if we get a list back as the high level item
                 # keep the feature key in there as a single key dict
-                if response[response_feature_key] is list:
+                if type(response[response_feature_key]) is list:
                     weather_features.append(
                         ctor({response_feature_key: response[response_feature_key]}))
                 else:
