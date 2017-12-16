@@ -141,7 +141,7 @@ class Extract():
         self.format = 'json'
 
     def alerts(self, query):
-        """Shorthand to interface with the conditions data feature
+        """Shorthand to interface with the alerts data feature
 
         Args:
             query (str or list): string or list of strings for query portion of URL generation
