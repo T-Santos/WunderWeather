@@ -61,7 +61,7 @@ Code Examples
 The following code snippets are examples of extracting data from data feature responses. Some examples build off of previous examples (as to avoid repetition) but should be properly documented as ``continuation from NNN example``.
 
 .. warning::
-	The WunderWeather only Python 3 compatible. 
+	The WunderWeather package is only Python 3 compatible. 
 
 .. note::
 	Because the `requests package <http://docs.python-requests.org/en/master/>`_ is awesome, we're going to be using that to make our requests in the following examples. We use it to make requests in our package and so should you!
