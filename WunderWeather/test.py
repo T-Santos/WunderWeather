@@ -3,7 +3,7 @@
    :platform: Unix, Windows
    :synopsis: Module to run tests for features
 
-.. moduleauthor:: Tyler Santos <1tsantos at gmail.com>
+.. moduleauthor:: Tyler Santos <1tsantos7 at gmail.com>
 
 """
 __docformat__ = 'reStructuredText'
@@ -457,7 +457,8 @@ def run_snippet():
     #response = extractor.alerts(location)
     #response = extractor.astronomy(location)
     #response = extractor.tide(location)
-    response = extractor.yesterday(location)
+    response = extractor.hourly_weekcast(location)
+    print(response)
     pprint(response.data)
 
     pass

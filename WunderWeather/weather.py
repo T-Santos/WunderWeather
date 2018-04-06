@@ -319,7 +319,7 @@ class Extract():
             weather.Weather_Base instance or None
 
         """
-        feature_context = (('weekcast', ''),)
+        feature_context = (('hourly_weekcast', ''),)
         return self.features(query, feature_context)[0]
 
     def weekcast(self, query):
